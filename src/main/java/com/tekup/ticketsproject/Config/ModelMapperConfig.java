@@ -1,5 +1,6 @@
 package com.tekup.ticketsproject.Config;
 
+import com.tekup.ticketsproject.DTO.ERole;
 import com.tekup.ticketsproject.DTO.TicketsDTO;
 import com.tekup.ticketsproject.DTO.UserDTO;
 import com.tekup.ticketsproject.Entities.Tickets;
@@ -21,6 +22,10 @@ public class ModelMapperConfig {
         modelMapper.createTypeMap(UserDTO.class, User.class)
                 .addMapping(UserDTO::getEmail,User::setMail)
                 .addMapping(UserDTO::getUsername,User::setName);
+        modelMapper.createTypeMap(User.class, UserDTO.class)
+                .addMapping(User::getName, UserDTO::setUsername)
+                .addMapping(User::getMail, UserDTO::setEmail)
+                .addMapping(User::getRole,UserDTO::setRole);
 
 
         return modelMapper;

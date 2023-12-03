@@ -72,10 +72,10 @@ public class AuthController {
                 .body(new UserInfoResponse(userDetails.getId(),
                         userDetails.getUsername(),
                         userDetails.getEmail(),
-                        roles.get(0)));
+                        roles.get(0),jwtCookie.getValue()));
     }
 
-    @PostMapping("/signup")
+ /*   @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if (userRepository.existsByName(signUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
@@ -102,7 +102,7 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-    }
+    }*/
 
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser() {

@@ -1,6 +1,7 @@
 package com.tekup.ticketsproject.security.jwt;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 
 import com.tekup.ticketsproject.Services.UserDetailsServiceImpl;
@@ -55,7 +56,12 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     }
 
     private String parseJwt(HttpServletRequest request) {
-        String jwt = jwtUtils.getJwtFromCookies(request);
-        return jwt;
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            // Extract the token from the "Bearer " prefix
+            return bearerToken.substring(7);
+        }
+
+        return null;
     }
 }

@@ -1,5 +1,7 @@
 package com.tekup.ticketsproject.DTO;
 
+import com.tekup.ticketsproject.Entities.Enum.ROLES;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -21,11 +23,8 @@ public class UserDTO {
     @Email
     private String email;
 
-    @NotBlank
-    @Size(max = 120)
-    private String password;
 
-    private ERole role;
+    private ROLES role;
 
     public UserDTO() {
     }
@@ -33,7 +32,6 @@ public class UserDTO {
     public UserDTO(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.password = password;
     }
 
     public Long getId() {
@@ -60,19 +58,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public ERole getRole() {
+    public ROLES getRole() {
         return role;
     }
 
-    public void setRole(ERole role) {
+    public void setRole(ROLES role) {
         this.role = role;
     }
 }
