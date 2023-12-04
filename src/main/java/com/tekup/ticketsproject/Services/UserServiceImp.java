@@ -63,4 +63,14 @@ public class UserServiceImp implements UserService{
             throw new Exception("Unable to delete user");
         }
     }
+
+    @Override
+    public void updateUser(SignUpRequest user) throws Exception {
+        User dbUser = this.userRepository.findByNameOrMail(user.getEmail()).orElse(null);
+        if (dbUser == null){
+            throw new Exception("User not found. Invalid mail");
+        }
+        dbUser.setPassword(this.encoder.encode(user.getPassword()));
+        this.userRepository.save(dbUser);
+    }
 }

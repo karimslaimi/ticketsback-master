@@ -55,4 +55,13 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
     }
+    @PutMapping("/update")
+    public ResponseEntity<?> editUser(@RequestBody SignUpRequest user){
+        try{
+            this.userService.updateUser(user);
+            return new ResponseEntity<>(new MessageResponse("User updated successfully"), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }
