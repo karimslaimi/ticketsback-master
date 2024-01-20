@@ -61,4 +61,9 @@ public class TicketServiceImp implements TicketService{
         tickets = this.ticketsRepository.save(tickets);
         return this.modelMapper.map(tickets, TicketsDTO.class);
     }
+
+
+    public void deleteTicket(Long id){
+        this.ticketsRepository.deleteById(id);
+    }
 }

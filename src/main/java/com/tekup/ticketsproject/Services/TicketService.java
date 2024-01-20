@@ -10,4 +10,6 @@ public interface TicketService {
     public List<TicketsDTO> getTickets(String username) throws Exception;
 
     TicketsDTO create(TicketsDTO ticketsDTO, String username) throws Exception;
+
+    void deleteTicket(Long id);
 }
